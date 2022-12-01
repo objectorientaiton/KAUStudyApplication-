@@ -1,25 +1,29 @@
-package com.example.team_16
-
 import android.content.ContentValues
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.team_16.R
+import com.example.team_16.User_Model
 import com.example.team_16.databinding.FragmentSignupBinding
+import com.example.team_16.db
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.FirebaseDatabase
 
 class SignupFragment : Fragment() {
 
     var binding : FragmentSignupBinding? = null
+
     lateinit var auth : FirebaseAuth
-    lateinit var database : DatabaseReference
+    private var database: DatabaseReference? = null
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +37,10 @@ class SignupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
+        register()
+    }
+
+    private fun register() {
 
         binding?.btnSignupRegister?.setOnClickListener {
 
@@ -80,6 +87,7 @@ class SignupFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            //파이어스토어
             val user_info = hashMapOf(
                 "email" to email,
                 "nickname" to binding?.etNickname?.text.toString(),
@@ -88,9 +96,9 @@ class SignupFragment : Fragment() {
                 "kauid" to binding?.etKauID?.text.toString(),
             )
 
+            auth = FirebaseAuth.getInstance()
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Toast.makeText(activity, "회원가입 성공", Toast.LENGTH_SHORT).show()
 
                     //파이어스토어
                     db.collection("Users").document("$email")
@@ -101,20 +109,27 @@ class SignupFragment : Fragment() {
                         .addOnFailureListener { e ->
                             Log.w(ContentValues.TAG, "Error adding document", e)
                         }
+
                     val bundle = Bundle().apply { putString("email", email) }
 
 
-                    findNavController().navigate(
-                        R.id.action_signupFragment_to_entryFragment,
-                        bundle
-                    )
+                    //리얼타임디비
+                    database = FirebaseDatabase.getInstance().getReference("Users")
+                    val User = User_Model(email, nickname, name, department, kauid)
 
-                } else {
-                    Toast.makeText(activity, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                    //else { Toast.makeText(activity, "회원가입 실패", Toast.LENGTH_SHORT).show() }
-                }
+                    database?.child(nickname)?.setValue(User)?.addOnSuccessListener {
+                        binding?.etEnterEmail?.text?.clear()
+                        binding?.etNickname?.text?.clear()
+                        binding?.etName?.text?.clear()
+                        binding?.etKauID?.text?.clear()
+                    }
+
+                    Toast.makeText(activity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+
+                    findNavController().navigate(R.id.action_signupFragment_to_entryFragment, bundle)
+
+                } else { Toast.makeText(activity, "회원가입 실패", Toast.LENGTH_SHORT).show() }
             }
         }
-
     }
 }
