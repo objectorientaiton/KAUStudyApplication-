@@ -1,3 +1,5 @@
+package com.example.team_16
+
 import android.content.ContentValues
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,10 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.team_16.R
-import com.example.team_16.User_Model
 import com.example.team_16.databinding.FragmentSignupBinding
-import com.example.team_16.db
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -21,7 +20,7 @@ class SignupFragment : Fragment() {
     var binding : FragmentSignupBinding? = null
 
     lateinit var auth : FirebaseAuth
-    private var database: DatabaseReference? = null
+    private var database: DatabaseReference ? = null
 
 
 
@@ -36,11 +35,6 @@ class SignupFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        register()
-    }
-
-    private fun register() {
 
         binding?.btnSignupRegister?.setOnClickListener {
 
@@ -115,9 +109,16 @@ class SignupFragment : Fragment() {
 
                     //리얼타임디비
                     database = FirebaseDatabase.getInstance().getReference("Users")
-                    val User = User_Model(email, nickname, name, department, kauid)
-
-                    database?.child(nickname)?.setValue(User)?.addOnSuccessListener {
+                    val uid = auth.currentUser?.uid
+//                    val User = User_Model(email, nickname, name, department, kauid, uid)
+//                    database?.child(nickname)?.setValue(User)?.addOnSuccessListener {
+//                        binding?.etEnterEmail?.text?.clear()
+//                        binding?.etNickname?.text?.clear()
+//                        binding?.etName?.text?.clear()
+//                        binding?.etKauID?.text?.clear()
+//                    }
+                    val User = User_Model(email, nickname, name, department, kauid, uid)
+                    database?.child(uid.toString())?.setValue(User)?.addOnSuccessListener {
                         binding?.etEnterEmail?.text?.clear()
                         binding?.etNickname?.text?.clear()
                         binding?.etName?.text?.clear()

@@ -6,5 +6,6 @@ class User_Model (
     var nickname: String? = null,
     var name: String? = null,
     var department: String? = null,
-    var kauId: String? = null
+    var kauId: String? = null,
+    var uid: String? = null
 )

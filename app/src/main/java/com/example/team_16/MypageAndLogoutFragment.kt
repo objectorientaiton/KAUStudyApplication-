@@ -27,7 +27,6 @@ class MypageAndLogoutFragment : Fragment() {
     ): View? {
         //  Inflate the layout for this fragment
 
-
         binding = FragmentMypageAndLogoutBinding.inflate(inflater)
         return binding?.root
 
@@ -36,11 +35,17 @@ class MypageAndLogoutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser?.uid
+        val user = auth.currentUser?.uid.toString()
 
-        readData(user.toString())
+        if(user.isNullOrEmpty())
+        {
+            Toast.makeText(activity,"There is no User", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            readData(user)
+        }
+
 
         binding?.btnLogout?.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
@@ -49,11 +54,11 @@ class MypageAndLogoutFragment : Fragment() {
         }
     }
 
-    private fun readData(userUid: Any) {
+    private fun readData(userUid: String) {
 
         database = FirebaseDatabase.getInstance().getReference("Users")
 
-        database.child(auth.currentUser?.uid.toString()).get().addOnSuccessListener {
+        database.child(userUid).get().addOnSuccessListener() {
 
             if(it.exists()){
 
@@ -62,6 +67,7 @@ class MypageAndLogoutFragment : Fragment() {
                 val name = it.child("name").value
                 val kauId = it.child("kauId").value
                 val department = it.child("department").value
+
 
                 binding?.txtMyEmail?.text = email.toString()
                 binding?.txtMyName?.text = name.toString()
@@ -72,7 +78,6 @@ class MypageAndLogoutFragment : Fragment() {
             }else{
                 Toast.makeText(activity, "User Doesn't Exist", Toast.LENGTH_SHORT).show()
             }
-
 
         }
     }
