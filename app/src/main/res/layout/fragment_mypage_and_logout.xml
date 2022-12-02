@@ -21,73 +21,131 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView        android:id="@+id/txt_myName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="이름"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_mypage" />
-
     <TextView
-        android:id="@+id/txt_myEmail"
+        android:id="@+id/txt_myName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="이메일"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_myName" />
+        android:text="이름"
+        android:textColor="@color/KAU_BLUE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_hintName"
+        app:layout_constraintStart_toEndOf="@+id/txt_hintName"
+        app:layout_constraintTop_toTopOf="@+id/txt_hintName" />
 
     <TextView
         android:id="@+id/txt_myNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="닉네임"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_myDept"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_myEmail" />
+        android:textColor="@color/KAU_BLUE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_hintNickname"
+        app:layout_constraintStart_toEndOf="@+id/txt_hintNickname"
+        app:layout_constraintTop_toTopOf="@+id/txt_hintNickname" />
 
     <TextView
         android:id="@+id/txt_myDept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="학과"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_myKauId"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_myNickname" />
+        android:textColor="@color/KAU_BLUE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_hintDept"
+        app:layout_constraintStart_toEndOf="@+id/txt_hintDept"
+        app:layout_constraintTop_toTopOf="@+id/txt_hintDept" />
 
     <TextView
         android:id="@+id/txt_myKauId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="학번"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_myDept" />
+        android:textColor="@color/KAU_BLUE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_hintKauId"
+        app:layout_constraintStart_toEndOf="@+id/txt_hintKauId"
+        app:layout_constraintTop_toTopOf="@+id/txt_hintKauId" />
+
+    <TextView
+        android:id="@+id/txt_myEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일"
+        android:textAlignment="center"
+        android:textColor="@color/KAU_BLUE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_hintEmail"
+        app:layout_constraintStart_toEndOf="@+id/txt_hintEmail"
+        app:layout_constraintTop_toTopOf="@+id/txt_hintEmail" />
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="로그아웃"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_myKauId" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/txt_hintName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:ellipsize="middle"
+        android:text="이름:    "
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_mypage" />
+
+    <TextView
+        android:id="@+id/txt_hintNickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:ellipsize="middle"
+        android:text="닉네임:  "
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hintName" />
+
+    <TextView
+        android:id="@+id/txt_hintDept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:ellipsize="middle"
+        android:text="학과:    "
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hintNickname" />
+
+    <TextView
+        android:id="@+id/txt_hintKauId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:ellipsize="middle"
+        android:text="학번:    "
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hintDept" />
+
+    <TextView
+        android:id="@+id/txt_hintEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:ellipsize="middle"
+        android:text="이메일:  "
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hintKauId" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
