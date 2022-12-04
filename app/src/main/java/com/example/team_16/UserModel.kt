@@ -1,7 +1,7 @@
 package com.example.team_16
 
 
-class User_Model (
+class UserModel (
     var email: String? = "None",
     var nickname: String? = null,
     var name: String? = null,

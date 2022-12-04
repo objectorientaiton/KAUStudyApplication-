@@ -14,9 +14,10 @@ import com.example.team_16.databinding.FragmentSignupBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignupFragment : Fragment() {
-
+    private val db = FirebaseFirestore.getInstance()
     var binding : FragmentSignupBinding? = null
 
     lateinit var auth : FirebaseAuth
@@ -117,7 +118,7 @@ class SignupFragment : Fragment() {
 //                        binding?.etName?.text?.clear()
 //                        binding?.etKauID?.text?.clear()
 //                    }
-                    val User = User_Model(email, nickname, name, department, kauid, uid)
+                    val User = UserModel(email, nickname, name, department, kauid, uid)
                     database?.child(uid.toString())?.setValue(User)?.addOnSuccessListener {
                         binding?.etEnterEmail?.text?.clear()
                         binding?.etNickname?.text?.clear()

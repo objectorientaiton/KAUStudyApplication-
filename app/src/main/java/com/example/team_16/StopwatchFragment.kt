@@ -10,9 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.team_16.Repository.StopwatchRepository
 import com.example.team_16.databinding.FragmentStopwatchBinding
 import com.example.team_16.ViewModel.StopwatchViewModel
-import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.util.*
 import kotlin.collections.HashMap
 
 

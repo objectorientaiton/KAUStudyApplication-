@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.todo,
                 R.id.stopwatch,
                 R.id.entryFragment,
-                R.id.mypageAndLogoutFragmentFrag
+                R.id.mypageAndLogoutFragmentFrag,
+                R.id.DayrankingFragment
             )
         )
 
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             // 바텀 네비게이션이 표시되는 Fragment
             if (destination.id == R.id.todo || destination.id == R.id.mypageAndLogoutFragmentFrag
-                || destination.id == R.id.stopwatch
+                || destination.id == R.id.stopwatch || destination.id == R.id.DayrankingFragment
             ) {
                 binding.bottomNav.visibility = View.VISIBLE
             }
