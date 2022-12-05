@@ -35,8 +35,7 @@ class TodoFragment : Fragment() {
             repository.readTodo(dateStr, binding)
         }
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            dateStr = "${year}-${month + 1}-$dayOfMonth"
-            repository.readTodo(dateStr, binding)
+            repository.readTodo("${year}-${month + 1}-$dayOfMonth", binding)
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
             repository.readTodo(dateStr, binding)

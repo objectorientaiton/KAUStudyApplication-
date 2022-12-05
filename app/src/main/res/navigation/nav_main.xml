@@ -58,23 +58,10 @@
             app:destination="@id/todo" />
     </fragment>
     <fragment
-        android:id="@+id/DayrankingFragment"
-        android:name="com.example.team_16.RankingFragment"
-        android:label="fragment_lanking"
-        tools:layout="@layout/fragment_ranking">
-        <action
-            android:id="@+id/action_DayrankingFragment_to_monthrankingFragment2"
-            app:destination="@id/monthrankingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/monthrankingFragment"
-        android:name="com.example.team_16.MonthRankingFragment"
-        android:label="fragment_monthlankiong"
-        tools:layout="@layout/fragment_monthranking">
-        <action
-            android:id="@+id/action_monthrankingFragment_to_DayrankingFragment2"
-            app:destination="@id/DayrankingFragment" />
-    </fragment>
+        android:id="@+id/statistics"
+        android:name="com.example.team_16.Statistic"
+        android:label="fragment_statics"
+        tools:layout="@layout/fragment_statistic" />
     <fragment
         android:id="@+id/mypageAndLogoutFragmentFrag"
         android:name="com.example.team_16.MypageAndLogoutFragment"
