@@ -10,8 +10,10 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team_16.Repository.TodoRepository
 import com.example.team_16.databinding.TodoItemBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
 @SuppressLint("StaticFieldLeak")
+val db = FirebaseFirestore.getInstance()
 class Todoadapter(private var itemList : ArrayList<TodoModel>): RecyclerView.Adapter<Todoadapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{

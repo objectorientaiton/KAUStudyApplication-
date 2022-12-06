@@ -22,4 +22,5 @@ class SignUpViewModel() : ViewModel() {
     val kauId: LiveData<EditText> get() = _kauId
 
 
+
 }

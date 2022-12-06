@@ -2,12 +2,19 @@ package com.example.team_16.Repository
 
 import android.content.ContentValues
 import android.util.Log
+import com.example.team_16.UserModel
+import com.example.team_16.databinding.FragmentMypageAndLogoutBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
 
 class SignUpRepository {
+
     private val db = FirebaseFirestore.getInstance()
+
+    //파이어스토어
     val userRef = db.collection("Users")
 
     fun makeHash(major: String?, email: String?, kauid: String?,
@@ -32,5 +39,24 @@ class SignUpRepository {
             }
 
     }
+
+    //리얼타임디비
+//    lateinit var auth: FirebaseAuth
+//
+//    val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
+//    val uid = auth.currentUser?.uid
+//
+//   fun make_Rdb(major: String?, email: String?, kauid: String?,
+//                name: String?, nickname: String?): UserModel {
+//       val User = UserModel(major, email,kauid,name, nickname,uid)
+//
+//        return User }
+//
+//    fun setRdb(User: UserModel){
+//        database.child("Users").child(User.uid.toString()).setValue(User).addOnSuccessListener{
+//
+//        }
+//    }
+
 
 }

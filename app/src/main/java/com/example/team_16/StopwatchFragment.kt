@@ -1,10 +1,16 @@
 package com.example.team_16
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+
+import android.content.Intent
 import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.team_16.Repository.StopwatchRepository
@@ -27,6 +33,13 @@ class StopwatchFragment : Fragment() {
     private var binding: FragmentStopwatchBinding? = null
     private var date = LocalDate.now()
 
+    private lateinit var mContext: Context
+
+    override fun onAttach(context: android.content.Context) {
+        super.onAttach(context)
+        mContext = context
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +48,7 @@ class StopwatchFragment : Fragment() {
 
         return binding?.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,10 +83,19 @@ class StopwatchFragment : Fragment() {
             date = viewModel.date.value
         }
 
-
         binding?.btnStart?.setOnClickListener {
             viewModel.timerStart()
-        }
+
+            val intent = Intent(mContext, AlarmReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(mContext, 0 , intent, PendingIntent.FLAG_IMMUTABLE)
+
+            getSystemService(mContext, AlarmManager::class.java)?.setExact(
+                AlarmManager.RTC_WAKEUP,
+                SystemClock.elapsedRealtime() + 10,
+                pendingIntent
+            )
+         }
+
         binding?.btnStop?.setOnClickListener {
             viewModel.timerStop()
 

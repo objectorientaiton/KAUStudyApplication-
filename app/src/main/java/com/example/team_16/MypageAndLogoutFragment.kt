@@ -45,6 +45,7 @@ class MypageAndLogoutFragment : Fragment() {
             binding.EditNickname.setText(it)
         }
 
+
         binding.btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(activity, "로그아웃에 성공하였습니다.", Toast.LENGTH_SHORT).show()
