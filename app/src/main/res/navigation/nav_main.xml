@@ -60,7 +60,7 @@
     <fragment
         android:id="@+id/statistics"
         android:name="com.example.team_16.Statistic"
-        android:label="fragment_statics"
+        android:label="통계"
         tools:layout="@layout/fragment_statistic" />
     <fragment
         android:id="@+id/mypageAndLogoutFragmentFrag"

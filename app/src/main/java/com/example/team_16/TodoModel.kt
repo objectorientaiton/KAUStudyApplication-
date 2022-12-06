@@ -4,4 +4,5 @@ class TodoModel(
                 val date:String,
                 val description: String,
                 val counting : Long,
-                val checking : String)
+                val checking : String
+                )

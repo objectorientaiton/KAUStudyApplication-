@@ -39,24 +39,4 @@ class SignUpRepository {
             }
 
     }
-
-    //리얼타임디비
-//    lateinit var auth: FirebaseAuth
-//
-//    val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
-//    val uid = auth.currentUser?.uid
-//
-//   fun make_Rdb(major: String?, email: String?, kauid: String?,
-//                name: String?, nickname: String?): UserModel {
-//       val User = UserModel(major, email,kauid,name, nickname,uid)
-//
-//        return User }
-//
-//    fun setRdb(User: UserModel){
-//        database.child("Users").child(User.uid.toString()).setValue(User).addOnSuccessListener{
-//
-//        }
-//    }
-
-
 }

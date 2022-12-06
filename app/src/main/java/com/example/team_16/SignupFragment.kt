@@ -84,7 +84,7 @@ class SignupFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            //파이어스토어
+            //파이어스토어 데이터
             val user_info = hashMapOf(
                 "email" to email,
                 "nickname" to binding?.etNickname?.text.toString(),
@@ -93,11 +93,14 @@ class SignupFragment : Fragment() {
                 "kauid" to binding?.etKauID?.text.toString(),
             )
 
+            //리얼타임디비 데이터
+            database = FirebaseDatabase.getInstance().getReference("Users")
+            val User = UserModel(email, nickname, name, department, kauid)
 
             auth = FirebaseAuth.getInstance()
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    //파이어스토어
+                    //파이어스토어 저장
                     db.collection("Users").document("$email")
                         .set(user_info)
                         .addOnSuccessListener { documentReference ->
@@ -107,31 +110,29 @@ class SignupFragment : Fragment() {
                             Log.w(ContentValues.TAG, "Error adding document", e)
                         }
                     val bundle = Bundle().apply { putString("email", email) }
-                    //리얼타임디비
-                    database = FirebaseDatabase.getInstance().getReference("Users")
-                    val User = UserModel(email, nickname, name, department, kauid)
 
+                    //리얼타임디비 저장
                     database?.child(nickname)?.setValue(User)?.addOnSuccessListener {
                         val uid = auth.currentUser?.uid
 
-                        val User = UserModel(email, nickname, name, department, kauid, uid)
                         database?.child(uid.toString())?.setValue(User)?.addOnSuccessListener {
                             binding?.etEnterEmail?.text?.clear()
                             binding?.etNickname?.text?.clear()
                             binding?.etName?.text?.clear()
                             binding?.etKauID?.text?.clear()
                         }
-                        Toast.makeText(activity, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(
-                            R.id.action_signupFragment_to_entryFragment,
-                            bundle
-                        )
                     }
-                }else {
+                    Toast.makeText(activity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(
+                        R.id.action_signupFragment_to_entryFragment,
+                        bundle
+                    )
+                } else {
                     Toast.makeText(activity, "회원가입 실패", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 }
+
 

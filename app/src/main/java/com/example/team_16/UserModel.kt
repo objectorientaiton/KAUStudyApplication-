@@ -2,10 +2,10 @@ package com.example.team_16
 
 
 class UserModel (
-    var email: String? = "None",
-    var nickname: String? = null,
-    var name: String? = null,
-    var department: String? = null,
-    var kauId: String? = null,
-    var uid: String? = null
+    val email: String? = "None",
+    val nickname: String? = null,
+    val name: String? = null,
+    val department: String? = null,
+    val kauId: String? = null,
+    val uid: String? = null
 )

@@ -52,7 +52,6 @@ class EntryFragment : Fragment() {
         }
 
         binding?.btnRegister?.setOnClickListener{
-
             findNavController().navigate(R.id.action_entryFragment_to_signupFragment)
         }
 

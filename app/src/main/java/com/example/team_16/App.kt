@@ -31,10 +31,7 @@ class App :Application() {
                     "Tests",
                     NotificationManager.IMPORTANCE_LOW
                 )
-                createNotificationChannel(alarmChannel)
-
-
-            }
+                createNotificationChannel(alarmChannel) }
             }
         }
     }

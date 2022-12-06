@@ -16,7 +16,6 @@ class FindePWFragment : Fragment() {
 
     var binding : FragmentNewpwBinding? = null
     lateinit var auth : FirebaseAuth
-    lateinit var database : DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,13 +44,11 @@ class FindePWFragment : Fragment() {
                                 findNavController().navigate(R.id.action_findePWFragment_to_entryFragment3)
 
                             } else {
-                                Toast.makeText(activity, task.exception.toString(), Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                                Toast.makeText(activity, task.exception.toString(), Toast.LENGTH_SHORT).show() }
+                   }
                 }
             }
         }
     }
-
 }
 
